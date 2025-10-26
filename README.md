@@ -17,7 +17,8 @@ Cinema — um projeto voltado para o mundo dos filmes, atores e entretenimento.
 
 TECNOLOGIAS UTILIZADAS: 
 - Java Spring.
-- MYSQL
+- MYSQL.
+- Api de filmes.
 
 LIMITAÇÕES DO PROJETO: 
 - Iniciando sem frontend.
