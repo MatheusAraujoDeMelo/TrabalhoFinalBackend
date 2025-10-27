@@ -32,6 +32,8 @@ LIMITAÇÕES DO PROJETO:
 - Limite de requisições por usuario.
 - Filmes limitados aos dados na API e ao nosso pequeno banco de dados.
 
+## [Excalidraw](https://excalidraw.com/#json=XndpJUALurBa1lXttf3lO,RtldGjyZGuKDhNZ2-2XQhg)
+
 
 ### Entidades
 | Entidade          | Descrição                                                                                          | Principais Campos                                                                                                              |
@@ -42,3 +44,30 @@ LIMITAÇÕES DO PROJETO:
 | **Playlist**      | Lista de filmes criada por um usuário.                                                             | `id (int)`, `nome (varchar)`, `descricao (text)`, `usuario_id (int)`                                                           |
 | **PlaylistFilme** | Relaciona filmes às playlists (relação N:N).                                                       | `playlist_id (int)`, `filme_id (int)`
 <img width="898" height="804" alt="DiagramaBancoDados_BackEnd" src="https://github.com/user-attachments/assets/779994fc-37f5-4bad-80fc-48b48cc74266" />
+
+## Rotas
+| Descrição                                       | URI                      | Método HTTP | Corpo                 | Resposta Esperada | Erros Esperados                                |
+| ----------------------------------------------- | ------------------------ | ----------- | --------------------- | ----------------- | ---------------------------------------------- |
+| Retornar todos os filmes                        | `/Filmes`                | `GET`       | Vazio                 | `200 OK`          | `404 Not Found` - Nenhum filme encontrado.     |
+| Retornar um filme específico por id             | `/Film/:id`              | `GET`       | Vazio                 | `200 OK`          | `404 Not Found` - Filme não encontrado.        |
+| Cadastrar novo filme                            | `/Film`                  | `POST`      | `Novo filme JSON`     | `201 Created`     | `400 Bad Request` - Dados inválidos.           |
+| Atualizar um filme                              | `/Film`                  | `UPDATE`    | `Dados do filme`      | `200 OK`          | `404 Not Found` - Filme não encontrado.        |
+| Deletar um filme                                | `/Film/:id`              | `DELETE`    | Vazio                 | `200 OK`          | `404 Not Found` - Filme não encontrado.        |
+| Procurar um filme na API Externa por queryParam | `/Film/buscar`           | `GET`       | `queryParam`          | `200 OK`          | `404 Not Found` - Filme não encontrado.        |
+| Retornar todas as playlists                     | `/playlists`             | `GET`       | Vazio                 | `200 OK`          | `404 Not Found` - Nenhuma playlist encontrada. |
+| Retornar os itens dentro da playlist específica | `/playlist/:id`          | `GET`       | Vazio                 | `200 OK`          | `404 Not Found` - Playlist não encontrada.     |
+| Cadastrar uma nova playlist                     | `/playlist`              | `POST`      | `Nova playlist JSON`  | `201 Created`     | `400 Bad Request` - Dados inválidos.           |
+| Atualizar uma playlist                          | `/playlist`              | `UPDATE`    | `Dados da playlist`   | `200 OK`          | `404 Not Found` - Playlist não encontrada.     |
+| Deletar uma playlist                            | `/playlist/:id`          | `DELETE`    | Vazio                 | `200 OK`          | `404 Not Found` - Playlist não encontrada.     |
+| Retornar todos os usuários                      | `/usuarios`              | `GET`       | Vazio                 | `200 OK`          | `404 Not Found` - Nenhum usuário encontrado.   |
+| Retornar um usuário específico por id           | `/usuario/:id`           | `GET`       | Vazio                 | `200 OK`          | `404 Not Found` - Usuário não encontrado.      |
+| Cadastrar um novo usuário                       | `/usuario`               | `POST`      | `Novo usuário JSON`   | `201 Created`     | `400 Bad Request` - Dados inválidos.           |
+| Atualizar um usuário                            | `/usuario`               | `UPDATE`    | `Dados do usuário`    | `200 OK`          | `404 Not Found` - Usuário não encontrado.      |
+| Deletar um usuário                              | `/usuario/:id`           | `DELETE`    | Vazio                 | `200 OK`          | `404 Not Found` - Usuário não encontrado.      |
+| Retornar avaliações de um filme específico      | `/avaliacao/:filmeId`    | `GET`       | Vazio                 | `200 OK`          | `404 Not Found` - Filme não encontrado.        |
+| Retornar uma avaliação específica               | `/avaliacao/:id`         | `GET`       | Vazio                 | `200 OK`          | `404 Not Found` - Avaliação não encontrada.    |
+| Cadastrar uma nova avaliação                    | `/avaliacao/:id/filmeId` | `POST`      | `Nova avaliação JSON` | `201 Created`     | `400 Bad Request` - Dados inválidos.           |
+| Atualizar uma avaliação                         | `/avaliacao/:id`         | `UPDATE`    | `Dados da avaliação`  | `200 OK`          | `404 Not Found` - Avaliação não encontrada.    |
+| Deletar uma avaliação                           | `/avaliacao/:id`         | `DELETE`    | Vazio                 | `200 OK`          | `404 Not Found` - Avaliação não encontrada.    |
+
+
