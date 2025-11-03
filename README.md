@@ -20,19 +20,15 @@ A API Cinema busca resolver isso oferecendo uma interface que permite:
 
 Com isso, a API facilita o desenvolvimento de sistemas voltados ao tema de cinema, tornando o processo mais prático e organizado.
 
-## Entrega 2 - 27/10/2025
-
-TECNOLOGIAS UTILIZADAS: 
+## TECNOLOGIAS UTILIZADAS: 
 - Java Spring.
 - MYSQL.
 - Api de filmes.
 
-LIMITAÇÕES DO PROJETO: 
+## LIMITAÇÕES DO PROJETO: 
 - Iniciando sem frontend.
 - Limite de requisições por usuario.
 - Filmes limitados aos dados na API e ao nosso pequeno banco de dados.
-
-## [Excalidraw](https://excalidraw.com/#json=XndpJUALurBa1lXttf3lO,RtldGjyZGuKDhNZ2-2XQhg)
 
 
 ### Entidades
@@ -71,3 +67,5 @@ LIMITAÇÕES DO PROJETO:
 | Deletar uma avaliação                           | `/avaliacao/:id`         | `DELETE`    | Vazio                 | `200 OK`          | `404 Not Found` - Avaliação não encontrada.    |
 
 
+
+## [Excalidraw](https://excalidraw.com/#json=XndpJUALurBa1lXttf3lO,RtldGjyZGuKDhNZ2-2XQhg)
