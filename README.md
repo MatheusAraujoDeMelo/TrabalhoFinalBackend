@@ -44,12 +44,12 @@ Com isso, a API facilita o desenvolvimento de sistemas voltados ao tema de cinem
 ## Rotas
 | Descrição                                       | URI                      | Método HTTP | Corpo                 | Resposta Esperada | Erros Esperados                                |
 | ----------------------------------------------- | ------------------------ | ----------- | --------------------- | ----------------- | ---------------------------------------------- |
-| Retornar todos os filmes                        | `/Filmes`                | `GET`       | Vazio                 | `200 OK`          | `404 Not Found` - Nenhum filme encontrado.     |
-| Retornar um filme específico por id             | `/Filme/:id`             | `GET`       | Vazio                 | `200 OK`          | `404 Not Found` - Filme não encontrado.        |
-| Cadastrar novo filme                            | `/Filme`                 | `POST`      | `Dados do filme`      | `201 Created`     | `400 Bad Request` - Dados inválidos.           |
-| Atualizar um filme                              | `/Filme`                 | `UPDATE`    | `Dados do filme`      | `200 OK`          | `404 Not Found` - Filme não encontrado.        |
-| Deletar um filme                                | `/Filme/:id`             | `DELETE`    | Vazio                 | `200 OK`          | `404 Not Found` - Filme não encontrado.        |
-| Procurar um filme na API Externa por queryParam | `/Filme/buscar`          | `GET`       | `queryParam`          | `200 OK`          | `404 Not Found` - Filme não encontrado.        |
+| Retornar todos os filmes                        | `/filmes`                | `GET`       | Vazio                 | `200 OK`          | `404 Not Found` - Nenhum filme encontrado.     |
+| Retornar um filme específico por id             | `/filme/:id`             | `GET`       | Vazio                 | `200 OK`          | `404 Not Found` - Filme não encontrado.        |
+| Cadastrar novo filme                            | `/filme`                 | `POST`      | `Dados do filme`      | `201 Created`     | `400 Bad Request` - Dados inválidos.           |
+| Atualizar um filme                              | `/filme`                 | `UPDATE`    | `Dados do filme`      | `200 OK`          | `404 Not Found` - Filme não encontrado.        |
+| Deletar um filme                                | `/filme/:id`             | `DELETE`    | Vazio                 | `200 OK`          | `404 Not Found` - Filme não encontrado.        |
+| Procurar um filme na API Externa por queryParam | `/filme/buscar`          | `GET`       | `queryParam`          | `200 OK`          | `404 Not Found` - Filme não encontrado.        |
 | Retornar todas as playlists                     | `/playlists`             | `GET`       | Vazio                 | `200 OK`          | `404 Not Found` - Nenhuma playlist encontrada. |
 | Retornar os itens dentro da playlist específica | `/playlist/:id`          | `GET`       | Vazio                 | `200 OK`          | `404 Not Found` - Playlist não encontrada.     |
 | Cadastrar uma nova playlist                     | `/playlist`              | `POST`      | `Dados da playlist`   | `201 Created`     | `400 Bad Request` - Dados inválidos.           |
