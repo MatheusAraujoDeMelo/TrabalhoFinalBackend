@@ -1,4 +1,4 @@
-package entidades;
+package com.example.backend.entidades;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.UUID;
 
 @Getter

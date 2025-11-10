@@ -1,4 +1,4 @@
-package entidades;
+package com.example.backend.entidades;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
