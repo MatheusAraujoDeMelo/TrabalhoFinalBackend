@@ -69,3 +69,11 @@ Com isso, a API facilita o desenvolvimento de sistemas voltados ao tema de cinem
 
 
 ## [Excalidraw](https://excalidraw.com/#json=XndpJUALurBa1lXttf3lO,RtldGjyZGuKDhNZ2-2XQhg)
+
+
+## DOCS – Limitação de Requisições na API (Rate Limiting)
+Para evitar abuso de requisições e sobrecarga do servidor, foi implementado um sistema de limitação de requisições (rate limiting) na API utilizando a biblioteca Bucket4j
+.
+Esse controle garante que cada cliente (identificado pelo IP de origem) possa realizar apenas um número máximo de requisições dentro de um intervalo de tempo definido. Caso o 
+limite seja excedido, a API retorna uma resposta com código HTTP 429 (Too Many Requests).
+
