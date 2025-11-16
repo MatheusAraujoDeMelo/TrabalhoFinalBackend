@@ -44,4 +44,6 @@ public class AvaliacaoEntidade {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", nullable = false)
     private UsuarioEntidade usuario;
+
+
 }
