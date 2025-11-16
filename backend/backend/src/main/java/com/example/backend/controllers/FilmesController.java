@@ -1,44 +1,58 @@
-package com.seuprojeto.controllers;
+package com.example.backend.controllers;
 
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.example.backend.services.FilmesService;
+import com.example.backend.entidades.FilmeEntidade;
+
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/filmes")
 public class FilmesController {
 
+    @Autowired
+    private FilmesService filmesService;
+
     @GetMapping
-    public String getAllFilmes() {
-        System.out.println("GET /filmes chamado");
-        return "Listando todos os filmes...";
+    public List<FilmeEntidade> getAllFilmes() {
+        return filmesService.getAllFilmes();
     }
 
     @GetMapping("/{id}")
-    public String getFilmeById(@PathVariable Long id) {
-        System.out.println("GET /filmes/" + id + " chamado");
-        return "Buscando filme de ID " + id;
+    public FilmeEntidade getFilmeById(@PathVariable UUID id) {
+        return filmesService.getFilmeById(id);
     }
 
     @PostMapping
-    public String createFilme() {
-        System.out.println("POST /filmes chamado");
-        return "Novo filme cadastrado (teste)";
+    public FilmeEntidade createFilme(@RequestBody FilmeEntidade filme) {
+        return filmesService.createFilme(filme);
     }
 
     @PutMapping
-    public String updateFilme() {
-        System.out.println("PUT /filmes chamado");
-        return "Filme atualizado (teste)";
+    public FilmeEntidade updateFilme(@RequestBody FilmeEntidade filme) {
+        return filmesService.updateFilme(filme);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteFilme(@PathVariable Long id) {
-        System.out.println("DELETE /filmes/" + id + " chamado");
-        return "Filme de ID " + id + " deletado (teste)";
+    public String deleteFilme(@PathVariable UUID id) {
+        filmesService.deleteFilme(id);
+        return "Filme deletado com sucesso!";
     }
 
     @GetMapping("/buscar-filmes")
-    public String buscarFilmesExternos(@RequestParam String query) {
-        System.out.println("GET /buscar-filmes?query=" + query + " chamado");
-        return "Buscando filme externo com query: " + query;
+    public List<FilmeEntidade> buscarFilmesExternos(@RequestParam String query) {
+     //TODO   return filmesService.buscarFilmesAPIExterna(query);
+        return null;
     }
 }
