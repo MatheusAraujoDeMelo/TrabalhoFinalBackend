@@ -35,8 +35,10 @@ public class FilmeEntidade {
     @Lob
     private String sinopse;
 
-    @Column(precision = 3, scale = 2)
-    private BigDecimal nota_media;
+    // LINHA DUPLICADA REMOVIDA DAQUI
+
+    @Column(name = "nota_media", precision = 3, scale = 2) // scale = 2 para o (3,2) do BD
+    private BigDecimal notaMedia; // <-- DEIXE SÓ ESTE
 
     @OneToMany(mappedBy = "filme", cascade = CascadeType.ALL)
     private List<AvaliacaoEntidade> avaliacoes;
