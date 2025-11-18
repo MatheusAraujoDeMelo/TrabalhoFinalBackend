@@ -1,5 +1,6 @@
 package com.example.backend.controllers;
 
+import com.example.backend.dto.GetListFilmeResponseDto;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,7 @@ public class FilmesController {
     private FilmesService filmesService;
 
     @GetMapping
-    public List<FilmeEntidade> getAllFilmes() {
+    public List<GetListFilmeResponseDto> getAllFilmes() {
         return filmesService.getAllFilmes();
     }
 

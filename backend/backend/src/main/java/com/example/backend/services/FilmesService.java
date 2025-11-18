@@ -1,5 +1,6 @@
 package com.example.backend.services;
 
+import com.example.backend.dto.GetListFilmeResponseDto;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,12 +16,22 @@ public class FilmesService {
     @Autowired
     private FilmeRepository filmeRepository;
 
-    public List<FilmeEntidade> getAllFilmes() {
+    public List<GetListFilmeResponseDto> getAllFilmes() {
         List<FilmeEntidade> filmes = filmeRepository.findAll();
         if (filmes.isEmpty()) {
             throw new RuntimeException("Nenhum filme encontrado.");
         }
-        return filmes;
+        return filmes.stream()
+            .map(f -> new GetListFilmeResponseDto(
+                    f.getId(),
+                    f.getTitulo(),
+                    f.getDiretor(),
+                    f.getGenero(),
+                    f.getAno(),
+                    f.getSinopse(),
+                    f.getNotaMedia()
+            ))
+            .toList();
     }
 
     public FilmeEntidade getFilmeById(UUID id) {
