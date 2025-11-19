@@ -1,12 +1,13 @@
 package com.example.backend.services;
 
-import com.example.backend.dto.GetListFilmeResponseDto;
+import com.example.backend.dto.GetFilmeByIdDto;
+import com.example.backend.dto.GetFilmeResponseDto;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.UUID;
-import org.springframework.stereotype.Service;
+
 import com.example.backend.repositories.FilmeRepository;
 import com.example.backend.entidades.FilmeEntidade;
 
@@ -16,13 +17,13 @@ public class FilmesService {
     @Autowired
     private FilmeRepository filmeRepository;
 
-    public List<GetListFilmeResponseDto> getAllFilmes() {
+    public List<GetFilmeResponseDto> getAllFilmes() {
         List<FilmeEntidade> filmes = filmeRepository.findAll();
         if (filmes.isEmpty()) {
             throw new RuntimeException("Nenhum filme encontrado.");
         }
         return filmes.stream()
-            .map(f -> new GetListFilmeResponseDto(
+            .map(f -> new GetFilmeResponseDto(
                     f.getId(),
                     f.getTitulo(),
                     f.getDiretor(),
@@ -34,19 +35,40 @@ public class FilmesService {
             .toList();
     }
 
-    public FilmeEntidade getFilmeById(UUID id) {
-        return filmeRepository.findById(id)
+    public GetFilmeResponseDto getFilmeById(GetFilmeByIdDto idDto) {
+        FilmeEntidade filme = filmeRepository.findById(idDto.id())
                 .orElseThrow(() -> new RuntimeException("Filme não encontrado."));
+
+        return new GetFilmeResponseDto(
+                filme.getId(),
+                filme.getTitulo(),
+                filme.getDiretor(),
+                filme.getGenero(),
+                filme.getAno(),
+                filme.getSinopse(),
+                filme.getNotaMedia()
+        );
     }
 
-    public FilmeEntidade createFilme(FilmeEntidade filme) {
+
+    public GetFilmeResponseDto createFilme(FilmeEntidade filme) {
         if (filme.getTitulo() == null || filme.getTitulo().isBlank()) {
             throw new RuntimeException("Título inválido.");
         }
-        return filmeRepository.save(filme);
+        FilmeEntidade salvo = filmeRepository.save(filme);
+
+        return new GetFilmeResponseDto(
+                salvo.getId(),
+                salvo.getTitulo(),
+                salvo.getDiretor(),
+                salvo.getGenero(),
+                salvo.getAno(),
+                salvo.getSinopse(),
+                salvo.getNotaMedia()
+        );
     }
 
-    public FilmeEntidade updateFilme(FilmeEntidade filme) {
+    public GetFilmeResponseDto updateFilme(FilmeEntidade filme) {
         FilmeEntidade existente = getFilmeById(filme.getId());
         existente.setTitulo(filme.getTitulo());
         existente.setGenero(filme.getGenero());
@@ -54,10 +76,19 @@ public class FilmesService {
         existente.setDiretor(filme.getDiretor());
         existente.setSinopse(filme.getSinopse());
 
-        return filmeRepository.save(existente);
+        FilmeEntidade salvo = filmeRepository.save(filme);
+        return new GetFilmeResponseDto(
+                salvo.getId(),
+                salvo.getTitulo(),
+                salvo.getDiretor(),
+                salvo.getGenero(),
+                salvo.getAno(),
+                salvo.getSinopse(),
+                salvo.getNotaMedia()
+        );
     }
 
-    public void deleteFilme(UUID id) {
+    public void deleteFilme(GetFilmeByIdDto id) {
         FilmeEntidade filme = getFilmeById(id);
         filmeRepository.delete(filme);
     }

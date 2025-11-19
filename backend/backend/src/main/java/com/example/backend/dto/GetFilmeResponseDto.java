@@ -3,7 +3,7 @@ package com.example.backend.dto;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-public record GetListFilmeResponseDto(
+public record GetFilmeResponseDto(
         UUID idFilme,
         String tituloFilme,
         String diretorFilme,

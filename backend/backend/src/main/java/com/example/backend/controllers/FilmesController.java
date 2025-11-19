@@ -1,6 +1,7 @@
 package com.example.backend.controllers;
 
-import com.example.backend.dto.GetListFilmeResponseDto;
+import com.example.backend.dto.GetFilmeByIdDto;
+import com.example.backend.dto.GetFilmeResponseDto;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,27 +27,27 @@ public class FilmesController {
     private FilmesService filmesService;
 
     @GetMapping
-    public List<GetListFilmeResponseDto> getAllFilmes() {
+    public List<GetFilmeResponseDto> getAllFilmes() {
         return filmesService.getAllFilmes();
     }
 
     @GetMapping("/{id}")
-    public FilmeEntidade getFilmeById(@PathVariable UUID id) {
+    public GetFilmeResponseDto getFilmeById(@PathVariable GetFilmeByIdDto id) {
         return filmesService.getFilmeById(id);
     }
 
     @PostMapping
-    public FilmeEntidade createFilme(@RequestBody FilmeEntidade filme) {
+    public GetFilmeResponseDto createFilme(@RequestBody FilmeEntidade filme) {
         return filmesService.createFilme(filme);
     }
 
     @PutMapping
-    public FilmeEntidade updateFilme(@RequestBody FilmeEntidade filme) {
+    public GetFilmeResponseDto updateFilme(@RequestBody FilmeEntidade filme) {
         return filmesService.updateFilme(filme);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteFilme(@PathVariable UUID id) {
+    public String deleteFilme(@PathVariable GetFilmeByIdDto id) {
         filmesService.deleteFilme(id);
         return "Filme deletado com sucesso!";
     }
