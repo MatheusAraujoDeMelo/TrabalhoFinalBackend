@@ -1,5 +1,6 @@
 package com.example.backend.controllers;
 
+import com.example.backend.dto.FilmeExternoDTO;
 import com.example.backend.dto.GetListFilmeResponseDto;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,8 +53,7 @@ public class FilmesController {
     }
 
     @GetMapping("/buscar-filmes")
-    public List<FilmeEntidade> buscarFilmesExternos(@RequestParam String query) {
-     //TODO   return filmesService.buscarFilmesAPIExterna(query);
-        return null;
+    public List<FilmeExternoDTO> buscarFilmesExternos(@RequestParam String query) {
+        return filmesService.buscarFilmesAPIExterna(query);
     }
 }
