@@ -1,11 +1,18 @@
 package com.example.backend.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import java.util.List;
 
 @Data
 public class OmdbSearchResponseDTO {
-    private List<OmdbMovieDTO> Search;
+
+    @JsonProperty("Search")
+    private List<OmdbSearchItemDTO> search;
+
+    @JsonProperty("totalResults")
     private String totalResults;
-    private String Response;
+
+    @JsonProperty("Response")
+    private String response;
 }
