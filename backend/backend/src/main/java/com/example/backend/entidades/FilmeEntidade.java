@@ -11,6 +11,8 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Getter
 @Setter
 @Entity
@@ -40,6 +42,7 @@ public class FilmeEntidade {
     @Column(name = "nota_media", precision = 3, scale = 2) // scale = 2 para o (3,2) do BD
     private BigDecimal notaMedia; // <-- DEIXE SÓ ESTE
 
+    @JsonManagedReference("filme-avaliacoes")
     @OneToMany(mappedBy = "filme", cascade = CascadeType.ALL)
     private List<AvaliacaoEntidade> avaliacoes;
 

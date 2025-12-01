@@ -10,6 +10,8 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Getter
 @Setter
 @Entity
@@ -37,10 +39,12 @@ public class AvaliacaoEntidade {
         dataExpiracao = LocalDateTime.now();
     }
 
+    @JsonBackReference("filme-avaliacoes")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "filme_id", nullable = false)
     private FilmeEntidade filme;
 
+    @JsonBackReference("usuario-avaliacoes")
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", nullable = false)
     private UsuarioEntidade usuario;
