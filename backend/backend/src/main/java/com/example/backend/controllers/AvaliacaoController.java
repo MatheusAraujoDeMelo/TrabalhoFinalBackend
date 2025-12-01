@@ -14,12 +14,10 @@ import java.util.UUID; // Importa o UUID
 @RequestMapping("/avaliacao") // Rota base
 public class AvaliacaoController {
 
-    // 1. Injeta o Service que você criou
     @Autowired
     private AvaliacaoService avaliacaoService;
 
     // Rota: GET /avaliacao/filme/{filmeId}
-    // (Melhorei a rota que você tinha /avaliacao/{filmeId} para não dar conflito)
     @GetMapping("/filme/{filmeId}")
     public ResponseEntity<List<AvaliacaoEntidade>> getAvaliacoesByFilmeId(@PathVariable UUID filmeId) {
         List<AvaliacaoEntidade> avaliacoes = avaliacaoService.getAvaliacoesByFilmeId(filmeId);
@@ -32,16 +30,10 @@ public class AvaliacaoController {
         AvaliacaoEntidade avaliacao = avaliacaoService.getAvaliacaoById(id);
         return ResponseEntity.ok(avaliacao);
     }
-
-    // Rota: POST /avaliacao
-    // 2. É ESTA ROTA QUE VOCÊ ESTÁ TESTANDO!
-    //    Ela recebe o JSON do Body com @RequestBody
     @PostMapping
     public ResponseEntity<AvaliacaoEntidade> createAvaliacao(@RequestBody AvaliacaoEntidade avaliacao) {
-        // 3. Manda o objeto para o service
         AvaliacaoEntidade novaAvaliacao = avaliacaoService.createAvaliacao(avaliacao);
 
-        // 4. Retorna 201 Created
         return ResponseEntity.status(HttpStatus.CREATED).body(novaAvaliacao);
     }
 
@@ -56,6 +48,6 @@ public class AvaliacaoController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAvaliacao(@PathVariable UUID id) {
         avaliacaoService.deleteAvaliacao(id);
-        return ResponseEntity.ok().build(); // Retorna 200 OK sem corpo
+        return ResponseEntity.ok().build();
     }
 }
